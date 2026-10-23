@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<title>Package QA · Mock · Prepared for Westwood One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo" data-i="scan-text"></span><span class="name">Package QA</span><span class="tag">Prepared for Westwood One</span></div>
+  <nav class="tabs" id="tabs">
+    <button data-view="intake" class="on"><span data-i="inbox"></span><span>Intake</span></button>
+    <button data-view="review"><span data-i="list-checks"></span><span>Review</span><em id="reviewCount"></em></button>
+    <button data-view="history"><span data-i="history"></span><span>History</span></button>
+  </nav>
+  <div class="top-right"><span class="user-chip" id="userChip"></span><span class="demo-pill"><span data-i="info"></span><span>Demo - example data</span></span></div>
+</header>
+
+<main class="wrap">
+  <!-- ============ INTAKE ============ -->
+  <section class="view" id="view-intake">
+    <section class="hero">
+      <div>
+        <h1>Two ways in. One bot network. Nothing ships unchecked.</h1>
+        <p class="sub">Submit a sponsor package through the web form or email it to the bot inbox. Both go through the same ten bots as separate jobs, and every error comes back named in plain words. A person reviews the flags, re-runs the checks until it's all clear, signs off, and only then ships to studios.</p>
+      </div>
+      <div class="hero-actions">
+        <button class="btn primary" id="runBoth"><span data-i="zap"></span>Run both at once</button>
+        <button class="btn ghost" id="resetAll" title="Clears this browser's mock storage"><span data-i="rotate-ccw"></span>Reset demo</button>
+      </div>
+    </section>
+
+    <div class="jobs-indicator" id="indicator"></div>
+
+    <section class="lanes">
+      <article class="card lane" id="laneWeb">
+        <div class="lane-head">
+          <div class="lane-title"><span class="ico-box web" data-i="upload"></span><div><h2>Web form</h2><p>Any format: Word, PDF, Excel, CSV, JSON, plain text, or pasted links</p></div></div>
+          <span class="src-badge web"><span data-i="globe"></span>Web</span>
+        </div>
+        <div class="flowline" id="flowWeb"></div>
+        <form class="signin" id="signin" autocomplete="off">
+          <div class="signin-title"><span data-i="lock"></span><b>Sign in to submit</b><span class="note">Demo login, not real auth. Any input works.</span></div>
+          <div class="signin-row">
+            <label><span>Username</span><input id="uName" value="jordan.lee" spellcheck="false"></label>
+            <label><span>Password</span><input id="uPass" type="password" value="demo-password"></label>
+            <button class="btn primary" type="submit"><span data-i="log-in"></span>Sign in</button>
+          </div>
+        </form>
+        <div id="webForm">
+          <div class="signed"><span data-i="user-check"></span><span>Signed in as <b id="signedName"></b>. Web submissions are stamped with this user.</span><button class="link-btn" id="signOut" type="button"><span data-i="log-out"></span>Sign out</button></div>
+          <label class="drop" id="drop">
+            <input type="file" id="fileInput" multiple hidden>
+            <span class="drop-ico" data-i="file-up"></span>
+            <b>Drop files here or click to browse</b>
+            <span>Several files per job. Scripts, sponsor info, promo codes, links, schedule, host preferences, in any layout.</span>
+          </label>
+          <label class="paste"><span><span data-i="clipboard-paste"></span>Paste text or links</span><textarea id="pasteBox" rows="3" placeholder="Paste a script, a CSV, or one link per line (e.g. S1 https://...)"></textarea></label>
+          <div class="detected" id="webDetected"></div>
+          <div class="lane-foot">
+            <button class="btn" id="loadSample" type="button"><span data-i="file-text"></span>Load sample package</button>
+            <button class="btn primary" id="submitWeb" type="button"><span data-i="send"></span>Submit for checking</button>
+          </div>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </div>
+      </article>
+
+      <article class="card lane" id="laneEmail">
+        <div class="lane-head">
+          <div class="lane-title"><span class="ico-box email" data-i="mail"></span><div><h2>Email</h2><p>Send the package to the bot inbox, attachments in any format</p></div></div>
+          <span class="src-badge email"><span data-i="mail"></span>Email</span>
+        </div>
+        <div class="flowline" id="flowEmail"></div>
+        <div class="inbox">
+          <div class="inbox-head">
+            <span data-i="inbox"></span>
+            <div class="inbox-addr"><span class="lbl">Bot inbox</span><code>packages@[TBD]</code><span class="tbd">TBD · address not decided</span></div>
+            <span class="watch"><span class="pulse"></span>Watched by Package QA bot</span>
+          </div>
+          <div class="inbox-list" id="inboxList"></div>
+        </div>
+        <p class="lane-note"><span data-i="info"></span>The bot network reads this inbox directly. There's no separate import step: a new email starts a job on its own, and the sender's address is logged as the submitter.</p>
+        <div class="lane-foot">
+          <button class="btn primary" id="simEmail" type="button"><span data-i="mail"></span>Simulate email arriving</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card bot-panel">
+      <div class="bot-head">
+        <span class="ico-box bot" data-i="bot"></span>
+        <div><h2>Package QA bot network</h2><p>Ten bots side by side. The Project Manager Bot routes each job, the Interface Bot checks it's complete and presents results, seven checkers run in parallel, and the Verification Bot double-checks their work.</p></div>
+        <span class="bot-state" id="botState"></span>
+      </div>
+      <div class="bot-legend" id="legend"></div>
+    </section>
+
+    <section class="jobs" id="jobs"></section>
+  </section>
+
+  <!-- ============ REVIEW ============ -->
+  <section class="view" id="view-review" hidden></section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="view" id="view-history" hidden></section>
+
+  <footer class="foot">
+    <p><span data-i="info"></span>Mock for discussion only. All sponsors, shows, hosts, studios, promo codes, links, people, and emails are fictional examples. The AI and storage are simulated: no real AI calls, web requests, or Google Drive access. Checks are simple rules running in your browser, links are checked against a mock status list, and data is saved only in this browser. The inbox address is a placeholder.</p>
+  </footer>
+</main>
+
+<div class="modal" id="modal" hidden><div class="modal-card" id="modalCard"></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/samples.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/parse.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
