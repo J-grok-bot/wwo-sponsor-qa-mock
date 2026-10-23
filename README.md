@@ -25,6 +25,19 @@
 
 Click **Reset demo** to start over. State is saved in your browser's localStorage.
 
+## End-user experience page
+
+`end-user.html` (linked from the main mock header: "See the end-user experience") shows what a finished, friendly front end could look like for non-technical users. It is for show only and does not change the team demo.
+
+1. **Upload**: drag and drop or "Choose files" (any type shows as a file chip), optional "Paste text or links", or "Try with a sample package".
+2. **We check it**: a calm progress view with plain status lines.
+3. **Your report**: "We found N things to fix before this goes out", colored category tallies, and plain-English cards with a before/after. Each card has "Use this change" / "Keep mine", or use "Use all suggested changes".
+4. **Done**: "All set, your package is ready to send", "Download corrected package" (a .txt file), and "Download report (PDF-style)" (a print-friendly view; use the browser's Print > Save as PDF).
+
+Limits: uploaded files are not read. Every check shows the fictional example package (week of Nov 2, 2026, 15 findings), which comes from the same in-browser checks the team demo uses.
+
+Screenshots: `screenshots/enduser-desktop-*.png` and `screenshots/enduser-mobile-*.png`.
+
 ## What is real and what is simulated
 
 - **Real, in the browser:** the rule-based checks (`assets/engine.js`) run on the sample content, so findings, fixes, and re-checks actually work and are deterministic.

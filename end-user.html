@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check your sponsor package · Package QA (demo)</title>
+<meta name="description" content="Demo of a friendly end-user experience for checking a sponsor package. Example data only.">
+<meta name="theme-color" content="#faf8f5">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/enduser.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="eu-top">
+  <div class="eu-brand"><span class="eu-logo" data-i="file-check"></span><span class="eu-name">Package QA</span><span class="eu-tag">Prepared for Westwood One</span></div>
+  <div class="eu-top-right">
+    <a class="eu-back" href="./"><span data-i="arrow-left"></span><span>Team demo</span></a>
+    <span class="eu-demo"><span data-i="info"></span>Demo - example data</span>
+  </div>
+</header>
+
+<main id="main" class="eu-wrap">
+  <ol class="steps" id="steps" aria-label="Progress">
+    <li data-step="upload"><span class="num">1</span><span class="lbl">Upload</span></li>
+    <li class="bar" aria-hidden="true"><i></i></li>
+    <li data-step="checking"><span class="num">2</span><span class="lbl">We check it</span></li>
+    <li class="bar" aria-hidden="true"><i></i></li>
+    <li data-step="report"><span class="num">3</span><span class="lbl">Your report</span></li>
+  </ol>
+
+  <!-- 1. Upload -->
+  <section class="stage" id="stage-upload" aria-labelledby="h-upload">
+    <div class="hero">
+      <span class="hero-badge"><span data-i="sparkles"></span>Quick, friendly check</span>
+      <h1 id="h-upload">Check your sponsor package before it goes out</h1>
+      <p>Add your scripts, schedule, and sponsor details. We'll look for the little things that are easy to miss, like a wrong promo code or a link that doesn't open, and suggest fixes you can accept with one click.</p>
+    </div>
+
+    <div class="up-card">
+      <label class="dropzone" id="drop" for="files" tabindex="0">
+        <input type="file" id="files" multiple hidden>
+        <span class="dz-art" aria-hidden="true"><span data-i="cloud-upload"></span></span>
+        <span class="dz-title">Drag and drop your files here</span>
+        <span class="dz-sub">Word, PDF, Excel, CSV, or plain text. Add as many as you like.</span>
+        <span class="btn-soft" id="chooseBtn"><span data-i="plus"></span>Choose files</span>
+      </label>
+
+      <ul class="chips" id="chips" aria-live="polite"></ul>
+
+      <details class="paste" id="pasteWrap">
+        <summary><span data-i="clipboard-paste"></span>Paste text or links instead <span class="opt">Optional</span></summary>
+        <textarea id="paste" rows="4" placeholder="Paste a script, a list of links, or anything else you'd like us to look at."></textarea>
+      </details>
+
+      <div class="up-actions">
+        <button class="btn-big" id="checkBtn" disabled><span data-i="shield-check"></span>Check my package</button>
+        <button class="btn-link" id="sampleBtn"><span data-i="wand-sparkles"></span>Try with a sample package</button>
+      </div>
+      <p class="fine"><span data-i="lock"></span>Demo only: files stay on your device and aren't read. The report shows an example package.</p>
+    </div>
+
+    <ul class="what" aria-label="What we look for">
+      <li><span class="w-ico c-sched" data-i="calendar-days"></span><b>Schedule</b><span>Right ad, right show, right day</span></li>
+      <li><span class="w-ico c-code" data-i="ticket-percent"></span><b>Promo codes</b><span>Match the sponsor, no doubles</span></li>
+      <li><span class="w-ico c-link" data-i="link"></span><b>Links</b><span>Every web address opens</span></li>
+      <li><span class="w-ico c-words" data-i="message-square-warning"></span><b>Host preferences</b><span>Words a host would rather not say</span></li>
+      <li><span class="w-ico c-typo" data-i="spell-check"></span><b>Spelling and grammar</b><span>Typos and small slips</span></li>
+    </ul>
+  </section>
+
+  <!-- 2. Checking -->
+  <section class="stage" id="stage-checking" hidden aria-labelledby="h-check">
+    <div class="check-card">
+      <div class="orb" aria-hidden="true"><span class="ring r1"></span><span class="ring r2"></span><span class="orb-core" data-i="file-check"></span></div>
+      <h1 id="h-check">Checking your package</h1>
+      <p class="muted" id="checkSub">This usually takes a few seconds.</p>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog"><i></i></div>
+      <ul class="status-lines" id="lines" aria-live="polite"></ul>
+    </div>
+  </section>
+
+  <!-- 3. Report -->
+  <section class="stage" id="stage-report" hidden aria-labelledby="h-report"></section>
+
+  <!-- Done -->
+  <section class="stage" id="stage-done" hidden aria-labelledby="h-done"></section>
+</main>
+
+<footer class="eu-foot">
+  <p><span data-i="info"></span>A demo of what a finished, friendly version could look like. All sponsors, shows, hosts, promo codes, and links are fictional examples, and nothing here describes Westwood One's real systems or clients.</p>
+</footer>
+
+<div class="sheet-wrap" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div>
+<div class="eu-toast" id="toast" hidden role="status"></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/samples.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/parse.js"></script>
+<script src="assets/enduser.js"></script>
+</body>
+</html>
